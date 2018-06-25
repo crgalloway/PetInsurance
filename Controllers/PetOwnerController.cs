@@ -14,5 +14,11 @@ namespace ProblemD
         {
             _context = context;
         }
+        [HttpGet]
+        [Route("")]
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

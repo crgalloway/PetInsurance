@@ -5,6 +5,8 @@ namespace ProblemD.Models
 {
     public class PetOwner : BaseEntity
     {
+        public string Email {get;set;}
+        public string Password {get;set;}
         public string PolicyNumber {get;set;}
         public DateTime EnrollmentDate {get;set;}
         public int CountryId {get;set;}
