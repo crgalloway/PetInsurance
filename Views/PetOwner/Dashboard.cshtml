@@ -1,0 +1,62 @@
+@model PetOwner
+<h1>Welcome, @Model.Name!</h1>
+
+<h3>Policy Number: @Model.PolicyNumber</h3>
+@if(Model.Active == true)
+{
+    <h3>Status: Active</h3>
+    <button onclick="location.href='/CancelPolicy/@Model.Id'">Cancel Policy</button>
+}
+else
+{
+    <h3>Status: Inactive</h3>
+    <button onclick="location.href='/ActivatePolicy/@Model.Id'">Activate Policy</button>
+}
+
+<h4>Country of Residence: @Model.CountryOfResidence.Name</h4>
+
+<p>Pets Currently Covered:</p>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Breed</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td><button>Add a Pet!</button></td>
+        </tr>
+        @foreach(Pet pet in @Model.OwnedPets)
+        {
+            <tr>
+                <td>@pet.Name</td>
+                <td>@pet.DateOfBirth</td>
+                <td>@pet.Breed.Name</td>
+                <td>
+                    @if(@pet.Active == true)
+                    {
+                        <p>Active</p>
+                    }
+                    else
+                    {
+                        <p>Inactive</p>
+                    }
+                </td>
+                <td>
+                    @if(@pet.Active == true)
+                    {
+                        <button>Remove from Policy</button>
+                    }
+                    else
+                    {
+                        <button>Reactivate Policy</button>
+                    }
+                    &nbsp;
+                    <button>Transfer to another owner</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

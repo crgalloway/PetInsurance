@@ -10,5 +10,6 @@ namespace ProblemD.Models
         public PetOwner Owner {get;set;}
         public int BreedId {get;set;}
         public Breed Breed {get;set;}
+        public bool Active {get;set;}
     }
 }

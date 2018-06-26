@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ProblemD.Models
 {
@@ -9,7 +10,7 @@ namespace ProblemD.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             ProblemDContext _context = (ProblemDContext) validationContext.GetService(typeof(ProblemDContext));
-            DbSet<PetOwner> allOwners = _context.petowner;
+            List<PetOwner> allOwners = _context.petowner.ToList();
             foreach(PetOwner each in allOwners)
             {
                 if((string)value == (string)each.Email)

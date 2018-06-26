@@ -14,7 +14,7 @@ namespace ProblemD.Models
 
             Object instance = validationContext.ObjectInstance;
             Type type = instance.GetType();
-            string email = (string)type.GetProperty("Email ").GetValue(instance, null);
+            string email = (string)type.GetProperty("LoginEmail").GetValue(instance);
             var potentialOwner = _context.petowner.SingleOrDefault( o => o.Email == email );
             PasswordHasher<PetOwner> hasher = new PasswordHasher<PetOwner>();
             if(potentialOwner != null && hasher.VerifyHashedPassword(potentialOwner, potentialOwner.Password, (string)value) != 0)

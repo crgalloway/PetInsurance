@@ -11,6 +11,7 @@ namespace ProblemD.Models
         public DateTime EnrollmentDate {get;set;}
         public int CountryId {get;set;}
         public Country CountryOfResidence {get;set;}
+        public bool Active {get;set;}
         public List<Pet> OwnedPets {get;set;}
         public PetOwner()
         {

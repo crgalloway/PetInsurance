@@ -1,0 +1,21 @@
+@model PetOwnerLogin
+<form asp-action="Login" asp-controller="PetOwner" method="POST">
+    <table>
+        <tr>
+            <td><label asp-for="LoginEmail"></label></td>
+            <td><input asp-for="LoginEmail"></td>
+            <td><span asp-validation-for="LoginEmail"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="LoginPassword"></label></td>
+            <td><input type="password" asp-for="LoginPassword"></td>
+            <td><span asp-validation-for="LoginPassword"></span></td>
+        </tr>
+    </table>
+    <input type="Submit" value="Login">
+</form>
+<hr>
+<button>Need to Register?</button>
+<div>
+    @Html.Partial("Register", (petOwnerRegistration)@ViewBag.RegForm)
+</div>

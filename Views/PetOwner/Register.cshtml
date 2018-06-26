@@ -1,0 +1,38 @@
+@model petOwnerRegistration
+<form asp-action="Register" asp-controller="PetOwner" method="POST">
+    <table>
+        <tr>
+            <td><label asp-for="Name"></label></td>
+            <td><input asp-for="Name"></td>
+            <td><span asp-validation-for="Name"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="CountryId"></label></td>
+            <td>
+                <select asp-for="CountryId">
+                    @foreach(var country in @Model.AllCountries)
+                    {
+                        <option value="@country.Id">@country.Name</option>
+                    }
+                </select>
+            </td>
+            <td><span asp-validation-for="CountryId"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Email"></label></td>
+            <td><input asp-for="Email"></td>
+            <td><span asp-validation-for="Email"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password"></label></td>
+            <td><input asp-for="Password" type="password"></td>
+            <td><span asp-validation-for="Password"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="PasswordConfirmation"></label></td>
+            <td><input asp-for="PasswordConfirmation" type="password"></td>
+            <td><span asp-validation-for="PasswordConfirmation"></span></td>
+        </tr>
+    </table>
+    <input type="Submit" value="Register">
+</form>
