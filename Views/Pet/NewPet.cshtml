@@ -1,0 +1,36 @@
+@model PetValidation
+<form asp-action="NewPet" asp-controller="Pet" method="POST">
+    <table class="table">
+        <tr>
+            <td><label asp-for="PetName"></label></td>
+            <td><input asp-for="PetName"></td>
+            <td><span asp-validation-for="PetName"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="DateOfBirth"></label></td>
+            <td><input asp-for="DateOfBirth" type="date"></td>
+            <td><span asp-validation-for="DateOfBirth"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="BreedId"></label></td>
+            <td>
+                <select asp-for="BreedId" id="BreedSelect">
+                    @{int i = 0;}
+                    <option value="0" id="NewBreedOption">Add New Breed!</option>
+                    @foreach(Breed breed in @Model.AllBreeds)
+                        {
+                            <option selected value="@breed.Id">@breed.Name</option>
+                        }
+                        
+                </select>
+            </td>
+            <td><span asp-validation-for="BreedId"></span></td>
+        </tr>
+        <tr id="NewBreedForm" style="display: none">
+            <td><label asp-for="NewBreedName"></label></td>
+            <td><input asp-for="NewBreedName"></td>
+            <td><span asp-validation-for="NewBreedName">@ViewBag.Error</span></td>
+        </tr>
+    </table>
+    <input class="btn btn-default" type="submit" value="Register New Pet">
+</form>

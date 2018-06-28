@@ -1,22 +1,23 @@
 @model PetOwner
+<script src="~/js/script.js" language="javascript" type="text/javascript"></script>
 <h1>Welcome, @Model.Name!</h1>
-
+<a href="/logout">Logout</a>
 <h3>Policy Number: @Model.PolicyNumber</h3>
 @if(Model.Active == true)
 {
-    <h3>Status: Active</h3>
-    <button onclick="location.href='/CancelPolicy/@Model.Id'">Cancel Policy</button>
+    <h3>Status: Active &nbsp; <button class="btn btn-default" onclick="location.href='/CancelPolicy/@Model.Id'">Cancel Policy</button></h3>
+    
 }
 else
 {
-    <h3>Status: Inactive</h3>
-    <button onclick="location.href='/ActivatePolicy/@Model.Id'">Activate Policy</button>
+    <h3>Status: Inactive &nbsp; <button class="btn btn-default" onclick="location.href='/ActivatePolicy/@Model.Id'">Activate Policy</button></h3>
+    
 }
 
 <h4>Country of Residence: @Model.CountryOfResidence.Name</h4>
 
-<p>Pets Currently Covered:</p>
-<table>
+<h3>Pets Currently Covered: &nbsp; <button class="btn btn-default" id="ShowNewPetButton">Add a Pet!</button></h3>
+<table class="table table-striped table-bordered">
     <thead>
         <th>Name</th>
         <th>Birthday</th>
@@ -25,14 +26,11 @@ else
         <th>Actions</th>
     </thead>
     <tbody>
-        <tr>
-            <td><button>Add a Pet!</button></td>
-        </tr>
         @foreach(Pet pet in @Model.OwnedPets)
         {
             <tr>
                 <td>@pet.Name</td>
-                <td>@pet.DateOfBirth</td>
+                <td>@pet.DateOfBirth.ToString("MMMM d, yyyy")</td>
                 <td>@pet.Breed.Name</td>
                 <td>
                     @if(@pet.Active == true)
@@ -47,16 +45,24 @@ else
                 <td>
                     @if(@pet.Active == true)
                     {
-                        <button>Remove from Policy</button>
+                        <button class="btn btn-default" onclick="location.href='/CancelPet/@pet.Id'">Remove from Policy</button>
                     }
                     else
                     {
-                        <button>Reactivate Policy</button>
+                        if(Model.Active == true)
+                        {
+                            <button class="btn btn-default" onclick="location.href='/ActivatePet/@pet.Id'">Activate Policy</button>
+                        }
+                        
                     }
                     &nbsp;
-                    <button>Transfer to another owner</button>
+                    <button class="btn btn-default" onclick="location.href='/TransferPet/@pet.Id'">Transfer to another owner</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div id="NewPetForm" style="display: none">
+    @Html.Partial("~/Views/Pet/NewPet.cshtml", (PetValidation)@ViewBag.NewPetModel)
+</div>

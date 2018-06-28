@@ -5,16 +5,15 @@ using System.Collections.Generic;
 
 namespace ProblemD.Models
 {
-    //Currently only set to check if the email is Unique, could be adjusted to meet specific needs
-    public class UniqueAttribute : ValidationAttribute
+    public class EmailInDbAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             ProblemDContext _context = (ProblemDContext) validationContext.GetService(typeof(ProblemDContext));
-            var matchingEmail = _context.petowner.SingleOrDefault( o => o.Email == (string)value );
-            if(matchingEmail != null)
+            var petOwner = _context.petowner.SingleOrDefault( o => o.Email == (string)value);
+            if(petOwner == null)
             {
-                return new ValidationResult("Email already exists in database");
+                return new ValidationResult("There is no Pet Owner with that email address");
             }
             return ValidationResult.Success;
         }

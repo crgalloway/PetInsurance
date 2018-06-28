@@ -1,15 +1,25 @@
-@model petOwnerRegistration
+@model PetOwnerRegistration
+
+<script>
+    var errors = "True"
+    if(errors == "@ViewBag.RegErrors")
+    {
+        
+        $('#ShowRegisterButton').html("Already Registered? Just Login above!");
+        $('#RegisterForm').show();
+    }
+</script>
 <form asp-action="Register" asp-controller="PetOwner" method="POST">
-    <table>
-        <tr>
+    <table class="table">
+        <tr class="form-group">
             <td><label asp-for="Name"></label></td>
-            <td><input asp-for="Name"></td>
+            <td><input asp-for="Name" class="form-control"></td>
             <td><span asp-validation-for="Name"></span></td>
         </tr>
-        <tr>
+        <tr class="form-group">
             <td><label asp-for="CountryId"></label></td>
             <td>
-                <select asp-for="CountryId">
+                <select asp-for="CountryId" class="form-control">
                     @foreach(var country in @Model.AllCountries)
                     {
                         <option value="@country.Id">@country.Name</option>
@@ -18,21 +28,21 @@
             </td>
             <td><span asp-validation-for="CountryId"></span></td>
         </tr>
-        <tr>
+        <tr class="form-group">
             <td><label asp-for="Email"></label></td>
-            <td><input asp-for="Email"></td>
+            <td><input asp-for="Email" class="form-control"></td>
             <td><span asp-validation-for="Email"></span></td>
         </tr>
-        <tr>
+        <tr class="form-group">
             <td><label asp-for="Password"></label></td>
-            <td><input asp-for="Password" type="password"></td>
+            <td><input asp-for="Password" type="password" class="form-control"></td>
             <td><span asp-validation-for="Password"></span></td>
         </tr>
-        <tr>
+        <tr class="form-group">
             <td><label asp-for="PasswordConfirmation"></label></td>
-            <td><input asp-for="PasswordConfirmation" type="password"></td>
+            <td><input asp-for="PasswordConfirmation" type="password" class="form-control"></td>
             <td><span asp-validation-for="PasswordConfirmation"></span></td>
         </tr>
     </table>
-    <input type="Submit" value="Register">
+    <input class="btn btn-default" type="Submit" value="Register">
 </form>

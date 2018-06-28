@@ -8,10 +8,19 @@ namespace ProblemD.Models
     {
         [Required(ErrorMessage="Name required")]
         [MinLength(2, ErrorMessage="Name must be 2 characters or longer")]
-        [Display(Name="Name: ")]
-        public string Name {get;set;}
+        [Display(Name="Pet's Name: ")]
+        public string PetName {get;set;}
         [InThePast]
-        public DateTime DateOfBirth {get;set;}
+        [Display(Name="Pet's Date of Birth: ")]
+        public DateTime DateOfBirth {get;set;} = DateTime.Now;
+        [Display(Name="Select Breed: ")]
         public int BreedId {get;set;}
+        [MinLengthIfAny]
+        public string NewBreedName {get;set;}
+        public List<Breed> AllBreeds {get;set;}
+        public PetValidation()
+        {
+            AllBreeds = new List<Breed>();
+        }
     }
 }

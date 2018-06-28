@@ -1,0 +1,7 @@
+@model TransferOwner
+<form action="/Transfer/@Model.PetToBeTransferred.Id/From/@Model.CurrentOwner.Id" method="POST">
+    <h4>Please enter the email of the Pet Owner that @Model.PetToBeTransferred.Name will be transferred to:</h4>
+    <p>*Note: Pet's status will be in-active until approved by their newly listed owner*</p>
+    <input asp-for="Email"><span asp-validation-for="Email"></span>
+    <input type="submit" value="Transfer">
+</form>

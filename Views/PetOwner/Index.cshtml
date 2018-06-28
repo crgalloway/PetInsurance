@@ -1,21 +1,26 @@
 @model PetOwnerLogin
+<script src="~/js/script.js" language="javascript" type="text/javascript">
+</script>
+<h1>Welcome to Trupanion!</h1>
+<h3>Please Login</h3>
 <form asp-action="Login" asp-controller="PetOwner" method="POST">
-    <table>
-        <tr>
+    <table class="table">
+        <tr class="form-group">
             <td><label asp-for="LoginEmail"></label></td>
-            <td><input asp-for="LoginEmail"></td>
+            <td><input asp-for="LoginEmail" class="form-control"></td>
             <td><span asp-validation-for="LoginEmail"></span></td>
         </tr>
-        <tr>
+        <tr class="form-group">
             <td><label asp-for="LoginPassword"></label></td>
-            <td><input type="password" asp-for="LoginPassword"></td>
+            <td><input type="password" asp-for="LoginPassword" class="form-control"></td>
             <td><span asp-validation-for="LoginPassword"></span></td>
         </tr>
     </table>
-    <input type="Submit" value="Login">
+    <input class="btn btn-default" type="Submit" value="Login">
 </form>
 <hr>
-<button>Need to Register?</button>
-<div>
-    @Html.Partial("Register", (petOwnerRegistration)@ViewBag.RegForm)
+<button class="btn btn-default" id="ShowRegisterButton">New? Click here to Register!</button>
+<hr>
+<div id="RegisterForm" style="display: none">
+    @Html.Partial("Register", (PetOwnerRegistration)@ViewBag.RegForm)
 </div>

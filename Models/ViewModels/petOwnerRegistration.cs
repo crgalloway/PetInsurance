@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProblemD.Models
 {
-    public class petOwnerRegistration
+    public class PetOwnerRegistration
     {
         [Required(ErrorMessage="Name required")]
         [MinLength(2, ErrorMessage="Name must be 2 characters or longer")]
@@ -28,7 +28,7 @@ namespace ProblemD.Models
         [Display(Name="Country of Residence: ")]
         public int CountryId {get;set;}
         public List<Country> AllCountries {get;set;}
-        public petOwnerRegistration()
+        public PetOwnerRegistration()
         {
             AllCountries = new List<Country>();
         }
